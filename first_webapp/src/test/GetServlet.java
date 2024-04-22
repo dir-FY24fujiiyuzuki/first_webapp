@@ -35,7 +35,6 @@ public class GetServlet extends HttpServlet {
 		 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/get_result.jsp");
 		    rd.forward(request, response);
 		    
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 }
