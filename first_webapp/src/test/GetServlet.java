@@ -6,18 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.RequestDispatcher;
 /**
- * Servlet implementation class BeforeRedirectServlet
+ * Servlet implementation class GetServlet
  */
-@WebServlet("/BeforeRedirectServlet")
-public class BeforeRedirectServlet extends HttpServlet {
+@WebServlet("/GetServlet")
+public class GetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BeforeRedirectServlet() {
+    public GetServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +26,16 @@ public class BeforeRedirectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
-		response.sendRedirect("/first_webapp/VCServlet");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String q = request.getParameter("q");
+		
+		request.setAttribute("q", q );
+		
+		 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/get_result.jsp");
+		    rd.forward(request, response);
+		    
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 }
